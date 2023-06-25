@@ -61,6 +61,16 @@ app.post('/URL_Shortener', (req, res) => {
     })
 })
 
+app.get('/:shortenedUrl', (req, res) => {
+  const shortenedUrl = req.params.shortenedUrl //取得params內的短網址資料(shortenedUrl)
+  Url.findOne({ shortenedUrl: shortenedUrl })
+    .lean()
+    .then(data => {
+      res.redirect(data.originalUrl) //重新導向回原網址
+    })
+    .catch(error => console.log(error))
+})
+
 // Start and listen the server
 app.listen(port, () => {
   console.log(`The server is running on https://localhost:${port}`)
