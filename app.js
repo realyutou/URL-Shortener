@@ -41,20 +41,20 @@ app.get('/', (req, res) => {
 app.post('/URL_Shortener', (req, res) => {
   const originalUrl = req.body.originalUrl
   const shortenedUrl = urlShortener()
-  Url.findOne({ originalUrl: originalUrl })
+  Url.findOne({ originalUrl })
     .lean()
     .then(data => {
       // 若資料庫中已存在相同originalUrl，則抓出該筆資料，避免產生另一組短網址
       if (data !== null) {
-        return res.render('show', { port: port, shortenedUrl: data.shortenedUrl })
+        return res.render('show', { port, shortenedUrl: data.shortenedUrl })
       } else {
         // 若無，建立該筆資料
         Url.create({
-          originalUrl: originalUrl,
-          shortenedUrl: shortenedUrl
+          originalUrl,
+          shortenedUrl
         })
           .then(() => {
-            res.render('show', { port: port, shortenedUrl: shortenedUrl })
+            res.render('show', { port, shortenedUrl })
           })
           .catch(error => console.log(error))
       }
@@ -62,11 +62,11 @@ app.post('/URL_Shortener', (req, res) => {
 })
 
 app.get('/:shortenedUrl', (req, res) => {
-  const shortenedUrl = req.params.shortenedUrl //取得params內的短網址資料(shortenedUrl)
-  Url.findOne({ shortenedUrl: shortenedUrl })
+  const shortenedUrl = req.params.shortenedUrl // 取得params內的短網址資料(shortenedUrl)
+  Url.findOne({ shortenedUrl })
     .lean()
     .then(data => {
-      res.redirect(data.originalUrl) //重新導向回原網址
+      res.redirect(data.originalUrl) // 重新導向回原網址
     })
     .catch(error => console.log(error))
 })

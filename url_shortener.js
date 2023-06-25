@@ -1,5 +1,5 @@
 // Define urlShortener function
-function urlShortener() {
+function urlShortener () {
   // 定義包含所有大小寫字母及數字的常數
   const collection = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
 
