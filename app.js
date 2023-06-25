@@ -33,6 +33,10 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.post('/URL_Shortener', (req, res) => {
+  res.render('show')
+})
+
 // Start and listen the server
 app.listen(port, () => {
   console.log(`The server is running on https://localhost:${port}`)
