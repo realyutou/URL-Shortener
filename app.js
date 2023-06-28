@@ -66,8 +66,11 @@ app.get('/:shortenedUrl', (req, res) => {
   Url.findOne({ shortenedUrl })
     .lean()
     .then(data => {
-      res.redirect(data.originalUrl) // 重新導向回原網址
-    })
+      if (data !== null) {
+        res.redirect(data.originalUrl) // 重新導向回原網址
+      } else {
+        res.render('error') // 若該縮址不存在，導向錯誤頁面
+      }})
     .catch(error => console.log(error))
 })
 
