@@ -1,7 +1,7 @@
 <div class="my-3 text-center">
   <form action="/URL_Shortener" method="POST">
     <div class="mb-3">
-      <input type="text" class="form-control" name="originalUrl" placeholder="請輸入欲縮短的網址..." required> {{!-- required可防止使用者未輸入網址就送出表單，並跳出瀏覽器預設提示 --}}
+      <input type="url" class="form-control" name="originalUrl" placeholder="請輸入欲縮短的網址..." required> {{!-- required可防止使用者未輸入網址就送出表單，並跳出瀏覽器預設提示 --}}
     </div>
     <button type="submit" class="btn btn-primary">提交</button>
   </form>

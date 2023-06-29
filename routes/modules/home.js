@@ -6,7 +6,7 @@ const router = express.Router()
 const Url = require('../../models/Url')
 
 // 引用url_shortener model 
-const urlShortener = require('../../url_shortener')
+const urlShortener = require('../../utils/url_shortener')
 
 // 定義port
 const port = 3000
